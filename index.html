@@ -1,24 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Js training</title>
+    <title>Document</title>
 </head>
-
 <body>
-    <input type="text" id="productSearch" placeholder="Search products">
-    <select id="categoryFilter">
-        <option value="">All Categories</option>
-        <option value="Electronics">Electronics</option>
-        <option value="Fashion">Fashion</option>
-        <option value="Home">Home</option>
-    </select>
-    <input type="range" id="priceRange" min="0" max="3000" value="3000">
-    <span id="priceValue">$3000</span>
-    <div id="productsContainer"></div>
-    <script src="train.js"></script>
-</body>
+      <div  id="dragBox"
+       draggable="true"
+       style="width: 100px; height: 100px; background: #4da3ff; 
+              border-radius: 10px; display: flex; align-items: center; 
+              justify-content: center; color: white; font-weight: bold;
+              cursor: grab; user-select: none; margin-bottom: 20px;">
+    Drag me
+      </div>
 
+  <!-- Drop zone -->
+  <div id="dropZone"
+       style="width: 300px; height: 150px; border: 3px dashed #888; 
+              border-radius: 10px; display: flex; align-items: center; 
+              justify-content: center; color: #555; font-size: 18px;">
+    Drop here
+  </div>
+  <script src="train.js"></script>
+</body>
 </html>
