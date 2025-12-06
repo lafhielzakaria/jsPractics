@@ -1,49 +1,84 @@
-const books = [
-  { title: "1984", author: "George Orwell", pages: 328, available: true },
-  { title: "To Kill a Mockingbird", author: "Harper Lee", pages: 281, available: false },
-  { title: "The Great Gatsby", author: "F. Scott Fitzgerald", pages: 180, available: true },
-  { title: "Animal Farm", author: "George Orwell", pages: 112, available: true },
-  { title: "Pride and Prejudice", author: "Jane Austen", pages: 432, available: false }
+const products = [
+    { name: "iPhone 14", category: "Electronics", price: 999, rating: 4.5, inStock: true },
+    { name: "MacBook Pro", category: "Electronics", price: 199, rating: 4.8, inStock: false },
+    { name: "Nike Shoes", category: "Fashion", price: 120, rating: 4.2, inStock: true },
+    { name: "Coffee Maker", category: "Home", price: 89, rating: 4.0, inStock: true },
+    { name: "Wireless Headphones", category: "Electronics", price: 199, rating: 4.6, inStock: true }
 ];
-let clickTime = 0;
-let runTime = 0;
- const availableOnlyBtn = document.getElementById("availableOnly") .addEventListener("click", () => {
-  let availableBooksContainer = ""
-  if (authorSearch.value) {
-    return;
-  }
-  clickTime++
-  if (clickTime % 2 == 0) {
-    booksContainer.innerHTML = ""
-    return;
-  }
-  let availableBooks = books.filter(book => book.available == true)
-  if (runTime == 0) {
-    for (item of availableBooks) {
-      availableBooksContainer +=
+const priceRangeInput = document.getElementById("priceRange").addEventListener("input", () => {
+    priceValue.textContent = priceRange.value;
+    let filtredproductsContainer = "";
+    let filteredProductsByPrice = products.filter(product => product.price == priceRange.value)
+    for (item of filteredProductsByPrice) {
+        filtredproductsContainer +=
+            `
+        <p>${item.name}</p>
+        <p>${item.category}</p>
+        <p>${item.price}</p>
+        <p>${item.rating}</p>
+        <p>${item.inStock}</p>
         `
-             <p>${item.title}</p>
-             <p>${item.author}</p>
-             <p>${item.pages}</p>
-             <p>${item.available}</p>
-             `
     }
-  }
-
-  booksContainer.innerHTML = availableBooksContainer
-  runTime = 1;
+    productsContainer.innerHTML = filtredproductsContainer;
 })
-authorSearch.addEventListener("keyup", () => {
-  let searchedBook = books.find(book => book.author == authorSearch.value)
-  if (searchedBook === undefined) {
-    booksContainer.innerHTML = ""
-    return;
-  }
-  booksContainer.innerHTML =
-    `
-<p>${searchedBook.title}</p>
-<p>${searchedBook.author}</p>
-<p>${searchedBook.pages}</p>
-<p>${searchedBook.available}</p>
-`
+if (categoryFilter.value == "") {
+    let filteredproductContainer = "";
+    for (item of products) {
+        filteredproductContainer +=
+            `
+          <p>${item.name}</p>
+          <p>${item.category}</p>
+          <p>${item.price}</p>
+          <p>${item.rating}</p>
+          <p>${item.inStock}</p>
+          `
+    }
+    productsContainer.innerHTML = filteredproductContainer;
+
+}
+categoryFilter.addEventListener("change", () => {
+    if (categoryFilter.value == "") {
+        let filteredproductContainer = "";
+        for (item of products) {
+            filteredproductContainer +=
+                `
+          <p>${item.name}</p>
+          <p>${item.category}</p>
+          <p>${item.price}</p>
+          <p>${item.rating}</p>
+          <p>${item.inStock}</p>
+          `
+        }
+        productsContainer.innerHTML = filteredproductContainer;
+        return;
+
+    }
+    let filteredproductContainer = "";
+    let filtredProductsByCategorie = products.filter(product => product.category == categoryFilter.value)
+    for (item of filtredProductsByCategorie) {
+        filteredproductContainer +=
+            `
+          <p>${item.name}</p>
+          <p>${item.category}</p>
+          <p>${item.price}</p>
+          <p>${item.rating}</p>
+          <p>${item.inStock}</p>
+          `
+    }
+    productsContainer.innerHTML = filteredproductContainer;
+})
+const productSearchInput = document.getElementById("productSearch").addEventListener('keyup', () => {
+    let searchedProduct = products.find(product => product.name == productSearch.value)
+    if (searchedProduct === undefined) {
+        productsContainer.innerHTML = "";
+        return;
+    }
+    productsContainer.innerHTML =
+        `
+      <p>${searchedProduct.name}</p>
+      <p>${searchedProduct.category}</p>
+      <p>${searchedProduct.price}</p>
+      <p>${searchedProduct.rating}</p>
+      <p>${searchedProduct.inStock}</p>
+      `
 })

@@ -8,9 +8,16 @@
 </head>
 
 <body>
-    <input type="text" id="authorSearch" placeholder="Search by author">
-    <label><input type="checkbox" id="availableOnly"> Available only</label>
-    <div id="booksContainer"></div>
+    <input type="text" id="productSearch" placeholder="Search products">
+    <select id="categoryFilter">
+        <option value="">All Categories</option>
+        <option value="Electronics">Electronics</option>
+        <option value="Fashion">Fashion</option>
+        <option value="Home">Home</option>
+    </select>
+    <input type="range" id="priceRange" min="0" max="3000" value="3000">
+    <span id="priceValue">$3000</span>
+    <div id="productsContainer"></div>
     <script src="train.js"></script>
 </body>
 
